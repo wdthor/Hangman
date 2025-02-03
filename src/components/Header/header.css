@@ -1,0 +1,11 @@
+header {
+  .title {
+    text-align: center;
+    color: #f9f4da;
+  }
+
+  .instructions {
+    text-align: center;
+    color: #8e8e8e;
+  }
+}

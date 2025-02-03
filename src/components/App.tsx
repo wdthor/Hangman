@@ -1,5 +1,13 @@
+import Header from "./Header/Header";
+import GameStatus from "./Status/GameStatus";
+
 function App() {
-  return <main>App</main>;
+  return (
+    <>
+      <Header />
+      <GameStatus />
+    </>
+  );
 }
 
 export default App;
