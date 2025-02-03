@@ -1,0 +1,15 @@
+.languages {
+  width: 100%;
+  max-width: 30rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  gap: 4px;
+  font-size: 0.8rem;
+}
+
+.language {
+  padding: 6px 12px;
+  border-radius: 4px;
+}
