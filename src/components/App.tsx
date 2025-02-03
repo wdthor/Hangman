@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard/Keyboard";
 import GameStatus from "./Status/GameStatus";
 import Word from "./Word/Word";
 import "./app.css";
+import { languages } from "../languages";
 
 function App() {
   const [currentWord, setCurrentWord] = useState("react");
@@ -15,18 +16,31 @@ function App() {
       setGuessedLetters((prev) => [...prev, letter]);
     }
   }
+
+  const wrongGuessCount = guessedLetters.filter(
+    (letter) => !currentWord.includes(letter)
+  ).length;
+
+  const isGameWon = currentWord
+    .split("")
+    .every((letter) => guessedLetters.includes(letter));
+
+  const isGameLost = wrongGuessCount >= languages.length - 1;
+
+  const isGameOver = isGameLost || isGameWon;
+
   return (
     <>
       <Header />
-      <GameStatus />
-      <Attempt />
+      <GameStatus isGameWon={isGameWon} isGameLost={isGameLost} />
+      <Attempt languages={languages} wrongGuessCount={wrongGuessCount} />
       <Word currentWord={currentWord} guessedLetters={guessedLetters} />
       <Keyboard
         currentWord={currentWord}
         guessedLetters={guessedLetters}
         onGuessLetter={handleGuessedLetter}
       />
-      <button className="new-game">New Game</button>
+      {isGameOver && <button className="new-game">New Game</button>}
     </>
   );
 }

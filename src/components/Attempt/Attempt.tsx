@@ -1,15 +1,26 @@
-import { languages } from "../../languages";
+import { Language } from "../../languages";
 import "./attempt.css";
 
-const Attempt = () => {
-  const languagesElements = languages.map((language) => {
+interface AttemptProps {
+  languages: Language[];
+  wrongGuessCount: number;
+}
+
+const Attempt: React.FC<AttemptProps> = ({ languages, wrongGuessCount }) => {
+  const languagesElements = languages.map((language, index) => {
     const styles = {
       backgroundColor: language.backgroundColor,
       color: language.color,
     };
 
+    const isLanguageLost = index < wrongGuessCount;
+
     return (
-      <div key={language.name} className="language" style={styles}>
+      <div
+        key={language.name}
+        className={`language ${isLanguageLost ? "lost" : ""}`}
+        style={styles}
+      >
         {language.name}
       </div>
     );
