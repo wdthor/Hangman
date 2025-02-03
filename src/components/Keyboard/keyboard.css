@@ -1,0 +1,17 @@
+.keyboard {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 25rem;
+
+  button {
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #fcba29;
+    width: 35px;
+    padding: 10px;
+    border-color: #d7d7d7;
+    border-radius: 4px;
+  }
+}
