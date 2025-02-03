@@ -2,12 +2,15 @@
   display: flex;
   flex-direction: row;
   gap: 2px;
-}
 
-.letter {
-  padding: 6px;
-  background-color: #323232;
-  color: #f9f4da;
-  border-bottom: 1px solid #f9f4da;
-  text-transform: capitalize;
+  .letter {
+    text-align: center;
+    width: 2rem;
+    height: 2.3rem;
+    padding: 6px;
+    background-color: #323232;
+    color: #f9f4da;
+    border-bottom: 1px solid #f9f4da;
+    text-transform: capitalize;
+  }
 }
