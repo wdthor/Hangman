@@ -4,12 +4,14 @@ interface KeyboardProps {
   currentWord: string;
   guessedLetters: string[];
   onGuessLetter: (letter: string) => void;
+  isGameOver: boolean;
 }
 
 const Keyboard: React.FC<KeyboardProps> = ({
   currentWord,
   guessedLetters,
   onGuessLetter,
+  isGameOver,
 }) => {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   const alphabetList = alphabet.split("");
@@ -27,6 +29,7 @@ const Keyboard: React.FC<KeyboardProps> = ({
         key={letter}
         className={buttonClassNames}
         onClick={() => onGuessLetter(letter)}
+        disabled={isGameOver}
       >
         {letter}
       </button>

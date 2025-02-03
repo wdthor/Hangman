@@ -23,4 +23,9 @@
   button.wrong {
     background-color: #ec5d49;
   }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
