@@ -6,10 +6,11 @@ import GameStatus from "./Status/GameStatus";
 import Word from "./Word/Word";
 import "./app.css";
 import { languages } from "../languages";
-import { getFarewellText } from "../utils";
+import { getFarewellText, getRandomWord } from "../utils";
+import Confetti from "react-confetti";
 
 function App() {
-  const [currentWord, setCurrentWord] = useState("react");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   function handleGuessedLetter(letter: string) {
@@ -24,7 +25,7 @@ function App() {
   ).length;
 
   const farewellLanguage =
-    wrongGuessCount > 0 && wrongGuessCount < currentWord.length
+    wrongGuessCount > 0 && wrongGuessCount < languages.length
       ? getFarewellText(languages[wrongGuessCount - 1].name)
       : "";
 
@@ -39,9 +40,15 @@ function App() {
   const isLastGuessedLetterIncorrect =
     !!lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
 
+  function startNewGame() {
+    setCurrentWord(getRandomWord());
+    setGuessedLetters([]);
+  }
+
   return (
-    <>
-      <Header />
+    <main>
+      {isGameWon && <Confetti recycle={false} numberOfPieces={1000} />}
+      <Header numberOfGuess={numberGuessesLeft} />
       <GameStatus
         isGameWon={isGameWon}
         isGameLost={isGameLost}
@@ -50,7 +57,11 @@ function App() {
         farewellLanguage={farewellLanguage}
       />
       <Attempt languages={languages} wrongGuessCount={wrongGuessCount} />
-      <Word currentWord={currentWord} guessedLetters={guessedLetters} />
+      <Word
+        currentWord={currentWord}
+        guessedLetters={guessedLetters}
+        isGameLost={isGameLost}
+      />
       <Keyboard
         currentWord={currentWord}
         guessedLetters={guessedLetters}
@@ -76,8 +87,12 @@ function App() {
             .join(" ")}
         </p>
       </section>
-      {isGameOver && <button className="new-game">New Game</button>}
-    </>
+      {isGameOver && (
+        <button className="new-game" onClick={startNewGame}>
+          New Game
+        </button>
+      )}
+    </main>
   );
 }
 

@@ -13,4 +13,8 @@
     border-bottom: 1px solid #f9f4da;
     text-transform: capitalize;
   }
+
+  .missed-letter {
+    color: #ec5d49;
+  }
 }
