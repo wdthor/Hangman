@@ -43,7 +43,11 @@ const GameStatus: React.FC<GameStatusProps> = ({
     }
   }
 
-  return <section className={classNames}>{renderGameStatus()}</section>;
+  return (
+    <section className={classNames} aria-live="polite" role="status">
+      {renderGameStatus()}
+    </section>
+  );
 };
 
 export default GameStatus;

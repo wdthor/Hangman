@@ -29,7 +29,9 @@ const Keyboard: React.FC<KeyboardProps> = ({
         key={letter}
         className={buttonClassNames}
         onClick={() => onGuessLetter(letter)}
-        disabled={isGameOver}
+        disabled={isGameOver || guessedLetters.includes(letter)}
+        aria-disabled={isGameOver || guessedLetters.includes(letter)}
+        aria-label={`Letter ${letter}`}
       >
         {letter}
       </button>
